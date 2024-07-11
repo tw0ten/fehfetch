@@ -12,13 +12,13 @@ public class Main {
     public static void main(final String[] args) throws Exception{
         final Args a = new Args(args);
         if(a.contains("--help") || a.contains("-h")) {
-            System.out.println("usage:\n\t--path <path to save bg*.png(s)>\n\t--distro <neofetch distro>\n\t--font <path to .ttf (monospace) font file>");
+            System.out.println("usage:\n\t--path <path to save bg*.png(s)>\n\t--distro <neofetch --ascii_distro>\n\t--font <path to .ttf (monospace) font file>");
             return;
         }
-        final String path = new Optionull<>(a.get("--path")).or(".");
+        final Path path = Path.of(new Optionull<>(a.get("--path")).or("."));
         final GraphicsDevice[] devices = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
         final String neofetch = exec("neofetch -L --ascii_distro " + new Optionull<>(a.get("--distro")).or("auto"))
-                .replaceAll("\\u001B\\[[\\d;]+[mAD]", "").replaceAll("\\u001B\\[\\?\\d+[lh]", ""); //the regex is pretty fucked (cuz i was the one writing it (forced to))
+                .replaceAll("\\u001B\\[[\\d;]+[mAD]", "").replaceAll("\\u001B\\[\\?\\d+[lh]", ""); //works
         final StringBuilder feh = new StringBuilder("feh");
         final String fontPath = a.get("--font");
         final InputStream stream = fontPath == null ? ClassLoader.getSystemClassLoader().getResourceAsStream("main/resources/JetBrainsMono-Regular.ttf") : new FileInputStream(fontPath);
@@ -58,13 +58,11 @@ public class Main {
                 }
             }
         }
-
         {
             final String[] nf = neofetch.split("\n");
             int width = 0;
-            for(int i = 0; i < nf.length; i++){
-                width = Math.max(width, nf[i].length());
-            }
+            for(final String s : nf)
+                width = Math.max(width, s.length());
 
             for(int i = 0; i < nf.length; i++){
                 final String line = nf[i];
@@ -76,7 +74,6 @@ public class Main {
                 }
             }
         }
-
         return image;
     }
 
