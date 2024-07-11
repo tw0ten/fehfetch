@@ -1,3 +1,2 @@
-# bggen
-//TODO: change name
+# fehfetch
 feh neofetch
