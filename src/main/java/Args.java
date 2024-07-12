@@ -7,18 +7,18 @@ public class Args {
         this.args = args;
     }
 
-    public boolean contains(final String arg) {
-        for (final String s : args) {
-            if (s.equals(arg))
+    public boolean contains(final String arg){
+        for(final String s : args){
+            if(s.equals(arg))
                 return true;
         }
         return false;
     }
 
-    public String get(final String arg) {
+    public String get(final String arg){
         boolean found = false;
-        for (final String s : args) {
-            if (found)
+        for(final String s : args){
+            if(found)
                 return s;
             found = s.equals(arg);
         }

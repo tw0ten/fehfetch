@@ -48,8 +48,8 @@ public class Main {
                 ctx.fillRect(j * one, j * one, w - j * one * 2, h - j * one * 2);
             }
         }
+        final Random r = new Random();
         {
-            final Random r = new Random();
             for(int x = 0; x < w; x += 2){
                 for(int y = 0; y < h; y += 2){
                     final int distance = (w / 2 - x) * (w / 2 - x) + (h / 2 - y) * (h / 2 - y);
@@ -64,14 +64,12 @@ public class Main {
             int width = 0;
             for(final String s : nf)
                 width = Math.max(width, s.length());
-
+            final int fx = ctx.getFontMetrics(font).charWidth(' '), fy = ctx.getFontMetrics(font).getHeight();
             for(int i = 0; i < nf.length; i++){
                 final String line = nf[i];
                 for(int x = 0; x < line.length(); ++x){
-                    ctx.setColor(new Color((int) (Math.random() * 256.0), (int) (Math.random() * 256.0), (int) (Math.random() * 256.0)));
-                    i++;
-                    ctx.drawString(line.charAt(x) + "", w / 2f + ((-width / 2f + x) * ctx.getFontMetrics(font).charWidth(('0'))), h / 2f + ((-nf.length / 2f + i) * ctx.getFontMetrics(font).getHeight()));
-                    i--;
+                    ctx.setColor(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+                    ctx.drawString(String.valueOf(line.charAt(x)), w / 2f + ((-width / 2f + x) * fx), h / 2f + ((-nf.length / 2f + i + 1) * fy));
                 }
             }
         }
