@@ -1,3 +1,10 @@
 # fehfetch
 feh neofetch
 ![arch](test/arch.png "arch")
+![debian](test/debian.png "debian")
+![fedora](test/fedora.png "fedora")
+![gentoo](test/gentoo.png "gentoo")
+![macos](test/macos.png "macos")
+![redhat](test/redhat.png "redhat")
+![steamos](test/steamos.png "steamos")
+![android](test/android.png "android")
