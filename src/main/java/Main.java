@@ -39,11 +39,12 @@ public class Main {
         ctx.setFont(font);
         final int w = image.getWidth(), h = image.getHeight();
         {
-            Color bg = new Color(0x202020);
-            final int one = Math.min(w, h) / 20;
-            for(int j = 0; j < 10; j++){
+            final int col = 12;
+            Color bg = new Color(0x202020 + 0x030303);
+            final int one = Math.min(w, h) / 2 / col;
+            for(int j = 0; j < col; j++){
+                bg = new Color(Math.max(bg.getRed() - 0x03, 0), Math.max(bg.getGreen() - 0x03, 0), Math.max(bg.getBlue() - 0x03, 0), bg.getAlpha());
                 ctx.setColor(bg);
-                bg = new Color(bg.getRed() - 0x02, bg.getGreen() - 0x02, bg.getBlue() - 0x02, bg.getAlpha());
                 ctx.fillRect(j * one, j * one, w - j * one * 2, h - j * one * 2);
             }
         }
