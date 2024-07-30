@@ -1,0 +1,9 @@
+#!/bin/sh
+rm -r out
+cd src
+javac -d ../out main/java/Main.java
+cd ..
+cp -r src/* out
+cd out
+rm main/java/*.java
+jar cvfm fehfetch.jar META-INF/MANIFEST.MF *

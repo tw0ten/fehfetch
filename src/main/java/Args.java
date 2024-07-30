@@ -7,7 +7,7 @@ public class Args {
         this.args = args;
     }
 
-    public boolean contains(final String arg){
+    public boolean has(final String arg){
         for(final String s : args){
             if(s.equals(arg))
                 return true;
